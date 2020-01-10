@@ -18,8 +18,26 @@ public class EarthQuakeAdapter extends android.widget.ArrayAdapter<com.example.a
         cityText.setText(currentEarthQuake.getCityText());
         android.widget.TextView numberText = (android.widget.TextView) listView.findViewById(com.example.android.quakereport.R.id.number_text_view);
         numberText.setText(currentEarthQuake.getNumberText());
+        java.util.Date dateObject = new java.util.Date(currentEarthQuake.getDateText());
         android.widget.TextView dateText = (android.widget.TextView) listView.findViewById(com.example.android.quakereport.R.id.date_text_view);
-        dateText.setText(currentEarthQuake.getDateText());
+        String formatedDate = formatDate(dateObject);
+        dateText.setText(formatedDate);
+        android.widget.TextView timeText = (android.widget.TextView) listView.findViewById(com.example.android.quakereport.R.id.time_text_view);
+        String formatedTime = formatTime(dateObject);
+        timeText.setText(formatedTime);
         return listView;
     }
+
+
+    private String formatDate (java.util.Date dateObject){
+        @android.annotation.SuppressLint("SimpleDateFormat") java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat("LLL dd,yy");
+        return simpleDateFormat.format(dateObject);
+    }
+
+
+    private String formatTime (java.util.Date dateObject){
+        @android.annotation.SuppressLint("SimpleDateFormat") java.text.SimpleDateFormat simpleDateFormat = new java.text.SimpleDateFormat("h:mm a");
+        return simpleDateFormat.format(dateObject);
+    }
+
 }
