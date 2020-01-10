@@ -3,19 +3,19 @@ package com.example.android.quakereport;
 public class EarthQuake {
 
     private String mNumberText;
-    private Long mdateText;
+    private Long mTimeInMillisecondst;
     private String mCityText;
 
-    public EarthQuake(String number,String city,Long date){
+    public EarthQuake(String number,String city,Long timeInMilliseconds){
         mCityText = city;
-        mdateText = date;
+        mTimeInMillisecondst = timeInMilliseconds;
         mNumberText =number;
 
     }
 
     public String getCityText(){return mCityText;}
 
-    public Long getDateText (){return mdateText;}
+    public Long getTimeInMilliseconds (){return mTimeInMillisecondst;}
 
     public String getNumberText(){return mNumberText;}
 }

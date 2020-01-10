@@ -15,16 +15,28 @@ public class EarthQuakeAdapter extends android.widget.ArrayAdapter<com.example.a
         }
         EarthQuake currentEarthQuake = getItem(position);
         android.widget.TextView cityText = (android.widget.TextView) listView.findViewById(com.example.android.quakereport.R.id.city_text_view);
-        cityText.setText(currentEarthQuake.getCityText());
+        android.widget.TextView offsetTextView = listView.findViewById(com.example.android.quakereport.R.id.offset_text_view);
+        if (!currentEarthQuake.getCityText().contentEquals("of")){
+            offsetTextView.setText("Near of");
+            cityText.setText(currentEarthQuake.getCityText());
+        }
+        else{
+            String[] strings = currentEarthQuake.getCityText().split("",4);
+            String ofSet =strings[0]+""+strings[1]+""+strings[3];
+            offsetTextView.setText(ofSet);
+            String primaryLocation = strings[4];
+            cityText.setText(primaryLocation);
+
+        }
         android.widget.TextView numberText = (android.widget.TextView) listView.findViewById(com.example.android.quakereport.R.id.number_text_view);
         numberText.setText(currentEarthQuake.getNumberText());
-        java.util.Date dateObject = new java.util.Date(currentEarthQuake.getDateText());
+        java.util.Date dateObject = new java.util.Date(currentEarthQuake.getTimeInMilliseconds());
         android.widget.TextView dateText = (android.widget.TextView) listView.findViewById(com.example.android.quakereport.R.id.date_text_view);
-        String formatedDate = formatDate(dateObject);
-        dateText.setText(formatedDate);
+        String formattedDate = formatDate(dateObject);
+        dateText.setText(formattedDate);
         android.widget.TextView timeText = (android.widget.TextView) listView.findViewById(com.example.android.quakereport.R.id.time_text_view);
-        String formatedTime = formatTime(dateObject);
-        timeText.setText(formatedTime);
+        String formattedTime = formatTime(dateObject);
+        timeText.setText(formattedTime);
         return listView;
     }
 
